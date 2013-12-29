@@ -1,0 +1,2 @@
+/status/ajax=1,ajaxdiff=1:POST:{ids=10442782}:ISO8859_1
+[{\"status_description\":\"\\n\\n\\n\\n\\t\\t\\taccepted\\t\\n\\n\\n\\n\\t\\n\\n\", \"id\":10442782, \"status\":15,\"time\":\"<a href=\\\"\\/ranks\\/ANGELS\\/\\\" title=\\\"See the best solutions\\\">2.29<\\/a>\",\"mem\":\"\\n\\n    \\t6.9M\\n    \",\"color\":\"kol3\"}\n]
