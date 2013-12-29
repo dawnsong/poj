@@ -1,0 +1,4 @@
+/status/ajax=1,ajaxdiff=1:POST:{ids=10443136}:ISO8859_1
+[{\"status_description\":\"\\n\\n\\n\\nruntime error    (<a href=\\\"http:\\/\\/en.wikipedia.org\\/wiki\\/SIGKILL\\\">SIGKILL<\\/a>)\\n\\t\\n\\n\\n\\n\\t\\n\\n\", \"id\":10443136, \"status\":12,\"time\":\"<a href=\\\"\\/ranks\\/SHPATH\\/\\\" title=\\\"See the best solutions\\\">0.00<\\/a>\",\"mem\":\"\\n\\n    100k\\n\",\"color\":\"kol\"}\n]
+/status/ajax=1,ajaxdiff=1:POST:{ids=10443100}:ISO8859_1
+[{\"status_description\":\"\\n\\n\\n\\nruntime error    (NZEC)\\n\\t\\n\\n\\n\\n\\t\\n\\n\", \"id\":10443100, \"status\":12,\"time\":\"<a href=\\\"\\/ranks\\/TEST\\/\\\" title=\\\"See the best solutions\\\">0.01<\\/a>\",\"mem\":\"\\n\\n    \\t7.2M\\n    \",\"color\":\"kol\"}\n]

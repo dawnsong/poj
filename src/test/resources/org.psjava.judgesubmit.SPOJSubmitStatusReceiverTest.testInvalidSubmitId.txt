@@ -1,0 +1,2 @@
+/status/ajax=1,ajaxdiff=1:POST:{ids=99999999}:ISO8859_1
+[]

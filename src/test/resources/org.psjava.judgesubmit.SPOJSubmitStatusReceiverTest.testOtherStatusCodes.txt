@@ -1,0 +1,6 @@
+/status/ajax=1,ajaxdiff=1:POST:{ids=10442793}:ISO8859_1
+[{\"status_description\":\"\\n\\n\\n\\nwrong answer\\n\\n\\n\\n\\t\\n\\n\", \"id\":10442793, \"status\":14,\"time\":\"<a href=\\\"\\/ranks\\/RAFANOLE\\/\\\" title=\\\"See the best solutions\\\">0.00<\\/a>\",\"mem\":\"\\n\\n    \\t2.2M\\n    \",\"color\":\"kol\"}\n]
+/status/ajax=1,ajaxdiff=1:POST:{ids=10442791}:ISO8859_1
+[{\"status_description\":\"\\n\\n\\n\\ntime limit exceeded\\n\\n\\n\\n\\t\\n\\n\", \"id\":10442791, \"status\":13,\"time\":\"-\",\"mem\":\"\\n\\n    \\t4.2M\\n    \",\"color\":\"kol\"}\n]
+/status/ajax=1,ajaxdiff=1:POST:{ids=10443136}:ISO8859_1
+[{\"status_description\":\"\\n\\n\\n\\nruntime error    (<a href=\\\"http:\\/\\/en.wikipedia.org\\/wiki\\/SIGKILL\\\">SIGKILL<\\/a>)\\n\\t\\n\\n\\n\\n\\t\\n\\n\", \"id\":10443136, \"status\":12,\"time\":\"<a href=\\\"\\/ranks\\/SHPATH\\/\\\" title=\\\"See the best solutions\\\">0.00<\\/a>\",\"mem\":\"\\n\\n    100k\\n\",\"color\":\"kol\"}\n]
