@@ -1,5 +1,5 @@
 #!/bin/sh
-EXE="$0"
+EXE="$(readlink -f $0)"
 while [ -h "$EXE" ] ; do
         ls=`ls -ld "$EXE"`
         link=`expr "$ls" : '.*-> \(.*\)$'`

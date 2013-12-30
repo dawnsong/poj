@@ -2,17 +2,27 @@
 # -*- coding: utf-8 -*-
 
 import re
-import sys
+import sys,os
+import ConfigParser
 import logging
 from time import sleep
 import urllib,urllib2,cookielib
 from BeautifulSoup import BeautifulSoup
+
+#Extension of source filename
+FILEEXT = {
+        '.cpp':'g++',
+        '.c':'gcc',
+        '.pas':'pascal'
+        }
 
 class POJ:
     URL_HOME = 'http://poj.org/'
     URL_LOGIN = URL_HOME + 'login?'
     URL_SUBMIT = URL_HOME + 'submit?'
     URL_STATUS = URL_HOME + 'status?'
+    URL_PROBLEM = URL_HOME + 'problem?'
+
     #结果信息
     INFO =['RunID','User','Problem','Result','Memory','Time','Language','Code Length','Submit Time']
     #语言
@@ -25,7 +35,6 @@ class POJ:
             'C':'5',
             'FORTRAN':'6',
             }
-
     def __init__(self, user_id, password):
         self.user_id = user_id
         self.password = password
@@ -69,6 +78,12 @@ class POJ:
             logging.error('submit error')
             return False
 
+    def problem(self, pid):
+        url=POJ.URL_PROBLEM + urllib.urlencode({'id':pid})
+        page = urllib2.urlopen(url)
+        with open('problem.htm','w') as problem:
+            problem.write(page.read())
+
     def result(self,user_id):
         url = POJ.URL_STATUS + urllib.urlencode({'user_id':user_id})
         page = urllib2.urlopen(url)
@@ -85,21 +100,40 @@ class POJ:
                 return False
         #最终结果在result序列中的位置
         num = [21,24,28,32,35,37,40,43,45]
-        for i in range(9):
-            print POJ.INFO[i],':',result[num[i]][1:-1]
+        with open('result.log','w') as flog:
+            for i in range(9):
+                print POJ.INFO[i],':',result[num[i]][1:-1]
+                flog.write('%s : %s\n' % (POJ.INFO[i],result[num[i]][1:-1]))
         return True
 
 
 if __name__=='__main__':
+    #read in username from cfg
+    cfg=ConfigParser.ConfigParser()
+    cfg.read('/home/dawnsong/.pojrc')
+    ###user_id, pwd, pid, lang, src, = sys.argv[1:]
+    user_id=cfg.get('poj', 'username','${4:-"username"}')
+    pwd=cfg.get('poj', 'passwd','${4:-"passwd"}')
+
     #基础logging模块配置
     FORMAT = '----%(message)s----'
     logging.basicConfig(level=logging.INFO,format = FORMAT)
     if len(sys.argv) > 1: #从外部传入参数
-        user_id, pwd, pid, lang, src, = sys.argv[1:]
+        src = sys.argv[1]
+        lang=''
+        if len(sys.argv)==2:
+            pid=os.path.basename(os.getcwd())
+        elif len(sys.argv)==3:
+            pid=sys.argv[2]
+        else:
+            src, pid, lang, = sys.argv[1:]
+        if ''==lang:
+            fn,fext = os.path.splitext(src)
+            lang=FILEEXT[fext.lower()]
+        print src, pid, lang
+        #sys.exit()
         src = open(src,'r').read()
     else:  #测试
-        user_id = 'dawnsong'
-        pwd = 'dawnsong'
         pid = 1000
         lang = 'gcc'
         src = '''
@@ -112,8 +146,11 @@ if __name__=='__main__':
             return 0;
         }
         '''
+
     logging.info('connecting to server')
     poj = POJ(user_id,pwd)
+    logging.info("Get problem")
+    poj.problem(pid)
     if poj.login():
         logging.info("submiting")
         if poj.submit(pid,lang,src):
@@ -121,3 +158,4 @@ if __name__=='__main__':
             status = poj.result(user_id)
             while status!=True:  #直到检测到结果
                 status = poj.result(user_id)
+                sleep(5)
