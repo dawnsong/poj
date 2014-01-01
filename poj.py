@@ -80,9 +80,10 @@ class POJ:
 
     def problem(self, pid):
         url=POJ.URL_PROBLEM + urllib.urlencode({'id':pid})
-        page = urllib2.urlopen(url)
-        with open('problem.htm','w') as problem:
-            problem.write(page.read())
+        if not os.path.isfile('problem.htm'):
+            page = urllib2.urlopen(url)
+            with open('problem.htm','w') as problem:
+                problem.write(page.read())
 
     def result(self,user_id):
         url = POJ.URL_STATUS + urllib.urlencode({'user_id':user_id})
@@ -149,7 +150,7 @@ if __name__=='__main__':
 
     logging.info('connecting to server')
     poj = POJ(user_id,pwd)
-    logging.info("Get problem")
+    logging.info("Get problem && Login")
     poj.problem(pid)
     if poj.login():
         logging.info("submiting")
@@ -158,4 +159,3 @@ if __name__=='__main__':
             status = poj.result(user_id)
             while status!=True:  #直到检测到结果
                 status = poj.result(user_id)
-                sleep(5)
