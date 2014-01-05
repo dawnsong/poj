@@ -49,6 +49,12 @@ int main(int argc, char **argv){
             int maxdiff=0;
             int pv=value[iRLE-1];//image[i*width+j]
             //cerr<<po<<" "<<pv<<endl;
+            //
+
+            //Same RLE detection
+            //if top-left and bottom-right both in same RLE
+            //then no need to calclate any more
+
             for(int ki=i-1;ki<=i+1;ki++){
                 if(ki<0 || ki>=height)continue;
                 for(int kj=j-1;kj<=j+1;kj++){
@@ -64,6 +70,8 @@ int main(int argc, char **argv){
                         while(oo >=cumLength[oRLE] && oRLE<=nl)oRLE++;
                         oRLE-=1;
                     }
+                    if(oRLE==iRLE-1)break;//same RLE
+
                     int ov=value[oRLE] ;//image[ki*width+kj]
                     int diff = pv>ov?(pv-ov):(ov-pv);
                     if(diff>maxdiff)maxdiff=diff;
