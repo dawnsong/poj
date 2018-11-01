@@ -12,6 +12,8 @@ int main(int argc, char **argv){
     return 0;
 }
 
+// Imagine a co-var matrix, search upper half
+// this is brute force way, space complexity: O(1), time complexity: n(n-1)/2
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
